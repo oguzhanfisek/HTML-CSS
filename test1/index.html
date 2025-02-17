@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Görev Listesi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #e9e9e9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn.delete {
+            background-color: #dc3545;
+        }
+
+        .input-task {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Görev Listesi</h1>
+
+        <input type="text" class="input-task" id="taskTitle" placeholder="Yeni görev ekleyin...">
+        <button class="btn" onclick="addTask()">Görev Ekle</button>
+
+        <ul id="taskList">
+            <!-- Görevler buraya eklenecek -->
+        </ul>
+    </div>
+
+    <script>
+        const apiUrl = 'http://127.0.0.1:5000/tasks';
+
+        // Görevleri al ve listele
+        function fetchTasks() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const taskList = document.getElementById('taskList');
+                    taskList.innerHTML = ''; // Önceki görevleri temizle
+                    data.tasks.forEach(task => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            ${task.title}
+                            <button class="btn delete" onclick="deleteTask(${task.id})">Sil</button>
+                        `;
+                        taskList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Hata:', error));
+        }
+
+        // Yeni görev ekle
+        function addTask() {
+            const taskTitle = document.getElementById('taskTitle').value;
+            if (taskTitle.trim() === '') {
+                alert('Lütfen bir görev başlığı girin.');
+                return;
+            }
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title: taskTitle, done: false })
+            })
+            .then(response => response.json())
+            .then(() => {
+                document.getElementById('taskTitle').value = ''; // Inputu temizle
+                fetchTasks(); // Görevleri tekrar al
+            })
+            .catch(error => console.error('Hata:', error));
+        }
+
+        // Görev silme
+        function deleteTask(taskId) {
+            fetch(`${apiUrl}/${taskId}`, {
+                method: 'DELETE',
+            })
+            .then(() => fetchTasks()) // Görev listesine tekrar bak
+            .catch(error => console.error('Hata:', error));
+        }
+
+        // Sayfa yüklendiğinde görevleri al
+        window.onload = fetchTasks;
+    </script>
+
+
+</body>
+</html>

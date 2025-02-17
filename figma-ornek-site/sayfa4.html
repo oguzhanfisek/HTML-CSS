@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            color: navy;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Düzenlemeleri */
+        .navbar {
+            background-color: white;
+            border-bottom: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav {
+            gap: 30px;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: navy;
+        }
+
+        /* Navbar'daki Buy Now Butonu Düzenlemesi */
+        .navbar .buy-now-btn {
+            padding: 8px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: navy;
+            /* Lacivert renk */
+            border: none;
+            border-radius: 5px;
+            margin-left: auto;
+            /* Sağ tarafa itmek için */
+        }
+
+        /* Main Content */
+        .button-group .btn {
+            padding: 8px 15px;
+            /* Daha küçük padding */
+            font-size: 0.9rem;
+            /* Yazı boyutunu koruyarak */
+            width: auto;
+            /* Butonun genişliğini otomatik yapalım */
+        }
+
+
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            flex-wrap: wrap;
+            padding: 30px;
+        }
+
+        .left-side {
+            flex: 1;
+            padding: 20px;
+            padding-left: 300px;
+            /* Soldan uzaklaştırma */
+            padding-right: 100px;
+            text-align: left;
+        }
+
+        .left-side h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .left-side p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .right-side {
+            flex: 1;
+            text-align: center;
+        }
+
+        .right-side img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: navy;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: lightgray;
+            color: navy;
+        }
+
+        /* Alt kısmın düzenlemeleri */
+        .alt-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            flex-wrap: wrap;
+            padding: 30px;
+            background-color: white
+                /* Farklı bir arka plan rengi */
+        }
+
+        .alt-left-side {
+            flex: 1;
+            padding: 20px;
+            padding-left: 300px;
+            padding-right: 200px;
+            text-align: left;
+        }
+
+        .alt-left-side h2 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .alt-left-side p {
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .alt-right-side {
+            flex: 1;
+            text-align: center;
+        }
+
+        .alt-right-side img {
+            max-width: 100%;
+            /* Fotoğrafı büyütme */
+            height: auto;
+            margin-left: 150px;
+            width: 100%;
+        }
+
+
+        .note-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .note {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            width: 45%;
+            /* Küçük notların genişliğini ayarladık */
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            position: fixed;
+            /* Sayfanın en altında sabit kalsın */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            /* Arka plan olmadan */
+            color: navy;
+            /* Lacivert yazı */
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+            <a class="navbar-brand mx-auto" href="#">Landing</a>
+            <!-- Buy Now butonunu sağa itmek için buy-now-btn class'ını ekledim -->
+            <button class="buy-now-btn">Buy Now</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <!-- Alt Content -->
+    <div class="alt-content">
+        <div class="alt-right-side">
+            <img src="foto4.png" alt="Image Description">
+        </div>
+        <!-- Sol Taraf -->
+        <div class="alt-left-side">
+            <h2>Light, Fast & Powerful</h2>
+            <p>aıushfuısahgıasbgıb asgbnaosng oasngoasngoıangoıasngoı nasgosangoasnogı nasoı noasngoı
+                noıanoısangoıasngoıasngoınasog nasoıgnoaıngoasngas asghnoısangasoıgn asongoasnga gofdnodsnhgodsnfohg
+                dfosnhosdfnhodfsn hodsfnhofkdsnohdsnfoghnodkshko dhfsmshd</p>
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="window.location.href='sayfa5.html'">Ana Sayfa</button>
+                <button class="btn btn-secondary">Learn More</button>
+            </div>
+        </div>
+
+        <!-- Sağ Taraf -->
+
+    </div>
+    <footer class="footer">
+        Landing
+    </footer>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

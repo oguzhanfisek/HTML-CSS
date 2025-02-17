@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pricing Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #7f92db;
+            /* Açık mavi arka plan */
+            color: navy;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .pricing-box {
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        h2 {
+            font-weight: bold;
+            color: black;
+        }
+
+        p {
+            color: white;
+            font-size: 1rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: black;
+        }
+
+        .btn-primary {
+            background-color: navy;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: darkblue;
+        }
+
+        .footer {
+            position: fixed;
+            /* Sayfanın en altında sabit kalsın */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            /* Arka plan olmadan */
+            color: navy;
+            /* Lacivert yazı */
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pricing-box">
+        <h2>A Price To Suit Everyone</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor.</p>
+        <div class="price">$40</div>
+        <p>UI Design Kit</p>
+        <small class="text-light">See. One price. Simple.</small> <br><br>
+        <button class="btn btn-primary" onclick="window.location.href='index.html'">Ana Sayfa</button>
+
+    </div>
+    <footer class="footer">
+        Landing
+    </footer>
+    
+
+</body>
+
+</html>
