@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Görev Listesi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #121212;
+            color: white;
+        }
+        #filterButtons {
+            margin-bottom: 20px;
+        }
+        .filter-btn {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+        }
+        #taskContainer {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            width: 50%;
+        }
+        #taskList {
+            list-style: none;
+            padding: 0;
+        }
+        .task {
+            background: #333;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .status-select {
+            margin-left: 10px;
+            background: #555;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        #report {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hoş Geldiniz!</h1>
+    <input type="text" id="taskInput" placeholder="Görev girin...">
+    <button onclick="addTask()">Görev Ekle</button>
+    
+    <div id="filterButtons">
+        <button class="filter-btn" onclick="filterTasks('Tümü')">Tümü</button>
+        <button class="filter-btn" onclick="filterTasks('Yapılacak')">Yapılacak</button>
+        <button class="filter-btn" onclick="filterTasks('Yapılıyor')">Yapılıyor</button>
+        <button class="filter-btn" onclick="filterTasks('Tamamlandı')">Tamamlandı</button>
+    </div>
+    
+    <div id="taskContainer">
+        <h2>Görevleriniz:</h2>
+        <ul id="taskList"></ul>
+    </div>
+    
+    <div id="report">
+        <h2>Raporlama:</h2>
+        <p>Toplam Görev: <span id="totalTasks">0</span></p>
+        <p>Tamamlanan Görev: <span id="completedTasks">0</span></p>
+    </div>
+    
+    <script>
+        function updateReport() {
+            let totalTasks = document.querySelectorAll(".task").length;
+            let completedTasks = document.querySelectorAll(".task .status-select").length ? [...document.querySelectorAll(".task .status-select")].filter(select => select.value === "Tamamlandı").length : 0;
+            
+            document.getElementById("totalTasks").textContent = totalTasks;
+            document.getElementById("completedTasks").textContent = completedTasks;
+        }
+        
+        function addTask() {
+            let taskInput = document.getElementById("taskInput");
+            let taskText = taskInput.value.trim();
+            
+            if (taskText !== "") {
+                let li = document.createElement("li");
+                li.classList.add("task");
+                
+                let span = document.createElement("span");
+                span.textContent = taskText;
+                
+                let statusSelect = document.createElement("select");
+                statusSelect.classList.add("status-select");
+                let statuses = ["Yapılacak", "Yapılıyor", "Tamamlandı"];
+                statuses.forEach(status => {
+                    let option = document.createElement("option");
+                    option.value = status;
+                    option.textContent = status;
+                    statusSelect.appendChild(option);
+                });
+                statusSelect.onchange = updateReport;
+                
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Sil";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = function() {
+                    li.remove();
+                    updateReport();
+                };
+                
+                li.appendChild(span);
+                li.appendChild(statusSelect);
+                li.appendChild(deleteBtn);
+                document.getElementById("taskList").appendChild(li);
+                taskInput.value = ""; // Input'u temizle
+                
+                updateReport();
+            }
+        }
+
+        function filterTasks(status) {
+            let tasks = document.querySelectorAll(".task");
+            tasks.forEach(task => {
+                let selectedStatus = task.querySelector(".status-select").value;
+                if (status === "Tümü" || selectedStatus === status) {
+                    task.style.display = "flex";
+                } else {
+                    task.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
